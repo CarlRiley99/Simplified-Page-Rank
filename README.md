@@ -42,6 +42,46 @@ Also, round off the rank of the page to two decimal places.
 
 ## Sample Problem
 ### Input:
+<pre>
 7 2 <br />
-google.com  gmail.com <br />
-google.com  maps.com <br />
+google.com    gmail.com <br />
+google.com    maps.com <br />
+facebook.com  ufl.edu <br />
+ufl.edu       google.com <br />
+ufl.edu       gmail.com <br />
+maps.com      facebook.com <br />
+gmail.com     maps.com <br />
+</pre>
+
+### Step 1: Map URLs to a unique ID
+<pre>
+1 google.com <br />
+2 gmail.com <br />
+3 facebook.com <br />
+4 maps.com <br />
+5 ufl.edu <br />
+</pre>
+
+![alt text](Images/Example_Page_Rank.jpeg)
+
+### Step 2: Graph Representation
+Here is the graph for our example: <br />
+
+![alt text](Images/Example_Page_Rank_Graph.jpeg)
+
+The initial values M <sub> ji </sub> in the adjacency matrix are 1/d<sub> i </sub> where d<sub> i </sub>
+is the outdegree of vertex *i*. <br />
+
+For our graph, the adjacency matrix will look like:
+
+![alt text](Images/Adjacency_Matrix.jpeg)
+
+"5 UFL" points to "1 google". 5 has outdegree 2, so sends 1/2 its pagerank to 1. So M <sub> 15 </sub> = 1/2.
+
+### Step 3: Power Iteration r(t + 1) = M * r(t)
+This means that a rank of the webpage at time t+1 is equal to the rank of that page at time *t*
+multiplied by matrix *M*. To achieve this, we create our matrix *M* based on input. Next, we
+initialize r(t) which is a matrix of size |V|x1 and consists of the ranks of every webpage.
+We initialize r(t) to 1/|V|. Next we compute power iterations based on our input.
+
+![alt text](Images/Example_Power_Iteration.jpeg)
